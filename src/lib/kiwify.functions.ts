@@ -166,6 +166,7 @@ export const createKiwifyPixCharge = createServerFn({ method: "POST" })
     const uri = "/v1/dynamic-qrcode";
     const method = "POST";
     const timestamp = Date.now().toString();
+    const documentNumber = data.document_number.replace(/\D+/g, "");
 
     const body = JSON.stringify({
       amount_in_cents: data.amount_in_cents,
@@ -176,7 +177,8 @@ export const createKiwifyPixCharge = createServerFn({ method: "POST" })
         data.external_reference_id ?? `kit-junino-${Date.now()}`,
       payer_data: {
         name: data.name,
-        document_number: data.document_number,
+        document_number: documentNumber,
+        document_type: documentNumber.length === 14 ? "cnpj" : "cpf",
       },
     });
 

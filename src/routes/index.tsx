@@ -237,6 +237,8 @@ function Index() {
                   src={d.img}
                   alt={d.title}
                   loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   width={640}
                   height={640}
                   className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform"

@@ -188,12 +188,18 @@ function Index() {
                   alt="Mockup do Kit Festa Junina com placa Arraiá, bonecos caipiras, fogueira e lembrancinhas"
                   width={1280}
                   height={1024}
+                  fetchpriority="high"
+                  decoding="async"
                   className="w-full h-auto"
                 />
                 <img
                   src={bonfire}
                   alt=""
                   aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  width={160}
+                  height={160}
                   className="absolute -bottom-4 -left-4 w-16 md:w-20 animate-flicker pointer-events-none"
                 />
               </div>

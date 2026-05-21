@@ -262,7 +262,16 @@ function Index() {
           <div className="mt-10 grid md:grid-cols-3 gap-5">
             {[festa1, festa2, festa3].map((src, i) => (
               <div key={i} className="rounded-2xl overflow-hidden border-4 border-junina-wood-dark shadow-card-junina rotate-[-1deg] even:rotate-[1.5deg]">
-                <img src={src} alt={`Festa junina decorada ${i + 1}`} loading="lazy" width={800} height={800} className="w-full h-64 object-cover" />
+                <img
+                  src={src}
+                  alt={`Festa junina decorada ${i + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  width={800}
+                  height={800}
+                  className="w-full h-64 object-cover"
+                />
               </div>
             ))}
           </div>

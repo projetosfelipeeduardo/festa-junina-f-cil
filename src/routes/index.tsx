@@ -219,7 +219,7 @@ function Index() {
       </section>
 
       {/* SECTION 2 - DELIVERABLES */}
-      <section className="py-16 relative">
+      <section className="py-10 relative">
         <SectionTitle>Tudo Que Você Vai Receber 🎁</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {deliverables.map((d) => (

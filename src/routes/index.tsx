@@ -245,7 +245,7 @@ function Index() {
       </section>
 
       {/* SECTION 3 - GALLERY */}
-      <section className="py-16 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
+      <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
         <SectionTitle>Sua Festa Vai Ficar Linda ✨</SectionTitle>
         <div className="mx-auto max-w-5xl px-4 text-center">
           <p className="text-lg text-junina-wood max-w-2xl mx-auto">

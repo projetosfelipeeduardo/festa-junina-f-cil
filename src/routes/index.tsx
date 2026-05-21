@@ -153,6 +153,8 @@ function Index() {
                 alt="Personagem caipira"
                 width={520}
                 height={1040}
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-[280px] h-auto drop-shadow-2xl animate-float"
               />
             </div>
@@ -186,12 +188,18 @@ function Index() {
                   alt="Mockup do Kit Festa Junina com placa Arraiá, bonecos caipiras, fogueira e lembrancinhas"
                   width={1280}
                   height={1024}
+                  fetchPriority="high"
+                  decoding="async"
                   className="w-full h-auto"
                 />
                 <img
                   src={bonfire}
                   alt=""
                   aria-hidden
+                  loading="lazy"
+                  decoding="async"
+                  width={160}
+                  height={160}
                   className="absolute -bottom-4 -left-4 w-16 md:w-20 animate-flicker pointer-events-none"
                 />
               </div>
@@ -229,6 +237,8 @@ function Index() {
                   src={d.img}
                   alt={d.title}
                   loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
                   width={640}
                   height={640}
                   className="w-full h-full object-contain p-3 group-hover:scale-105 transition-transform"
@@ -252,7 +262,16 @@ function Index() {
           <div className="mt-10 grid md:grid-cols-3 gap-5">
             {[festa1, festa2, festa3].map((src, i) => (
               <div key={i} className="rounded-2xl overflow-hidden border-4 border-junina-wood-dark shadow-card-junina rotate-[-1deg] even:rotate-[1.5deg]">
-                <img src={src} alt={`Festa junina decorada ${i + 1}`} loading="lazy" width={800} height={800} className="w-full h-64 object-cover" />
+                <img
+                  src={src}
+                  alt={`Festa junina decorada ${i + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  fetchPriority="low"
+                  width={800}
+                  height={800}
+                  className="w-full h-64 object-cover"
+                />
               </div>
             ))}
           </div>
@@ -298,7 +317,16 @@ function Index() {
             <figure key={t.name} className="rounded-2xl bg-card border-2 border-border shadow-card-junina p-5">
               <div className="flex gap-4 items-start">
                 <div className="relative shrink-0">
-                  <img src={t.img} alt="" loading="lazy" width={120} height={120} className="size-20 object-cover rounded-xl border-2 border-border" />
+                  <img
+                    src={t.img}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={120}
+                    height={120}
+                    className="size-20 object-cover rounded-xl border-2 border-border"
+                  />
                   <span className="absolute -bottom-2 -right-2 grid place-items-center size-8 rounded-full bg-junina-green text-white shadow-card-junina">
                     <MessageCircle className="size-4" />
                   </span>

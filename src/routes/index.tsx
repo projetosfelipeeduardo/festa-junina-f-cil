@@ -19,7 +19,8 @@ import {
   Sparkles,
 } from "lucide-react";
 
-import heroImg from "@/assets/hero-junina.jpg";
+import heroMockup from "@/assets/hero-mockup.png";
+import caipiraGirl from "@/assets/caipira-girl.png";
 import cardTotens from "@/assets/card-totens.png";
 import cardBamboles from "@/assets/card-bamboles.png";
 import cardBandeirinhas from "@/assets/card-bandeirinhas.png";
@@ -148,86 +149,98 @@ function Index() {
       <section className="relative pt-4 pb-12">
         <FlagBunting count={28} />
 
-        <div className="mx-auto max-w-6xl px-4 mt-6">
-          <div className="text-center">
-            <div className="inline-flex items-center gap-2 ribbon-banner px-8 py-2 text-sm md:text-base font-display uppercase tracking-widest">
-              <Sparkles className="size-4" /> Arquivos Digitais para Festa Junina <Sparkles className="size-4" />
+        <div className="mx-auto max-w-7xl px-4 mt-4">
+          {/* 3-column hero grid: girl | center content | price */}
+          <div className="grid lg:grid-cols-[260px_1fr_240px] gap-4 lg:gap-6 items-start">
+            {/* LEFT — caipira girl */}
+            <div className="hidden lg:flex justify-center items-end pt-12">
+              <img
+                src={caipiraGirl}
+                alt="Personagem caipira"
+                width={520}
+                height={1040}
+                className="w-full max-w-[280px] h-auto drop-shadow-2xl animate-float"
+              />
             </div>
-          </div>
 
-          <div className="grid md:grid-cols-[1fr_auto] gap-8 items-center mt-8">
-            <div className="text-center md:text-left">
-              <h1 className="font-display uppercase leading-[0.95]">
-                <span className="block text-3xl md:text-4xl text-junina-wood">Transforme sua</span>
-                <span className="block text-5xl md:text-7xl my-2">
+            {/* CENTER — mini headline + title + mockup */}
+            <div className="text-center">
+              <div className="inline-flex items-center gap-2 ribbon-banner px-8 py-2 text-xs md:text-sm font-display uppercase tracking-widest">
+                <Sparkles className="size-3" /> Arquivos Digitais para Festa Junina <Sparkles className="size-3" />
+              </div>
+
+              <h1 className="font-display uppercase leading-[0.95] mt-4">
+                <span className="block text-2xl md:text-3xl text-junina-wood">Transforme sua</span>
+                <span className="block text-5xl md:text-7xl my-1">
                   <span className="text-junina-blue text-stroke-wood">FESTA </span>
                   <span className="text-junina-red text-stroke-wood">JUNINA</span>
                 </span>
-                <span className="block text-2xl md:text-4xl text-junina-wood">em um Arraiá Lindo</span>
-                <span className="block text-3xl md:text-5xl text-junina-orange text-stroke-wood mt-1">
+                <span className="block text-xl md:text-3xl text-junina-wood">em um Arraiá Lindo</span>
+                <span className="block text-2xl md:text-4xl text-junina-orange text-stroke-wood mt-1">
                   Gastando Pouco!
                 </span>
               </h1>
-              <p className="mt-6 text-lg md:text-xl text-junina-wood max-w-xl mx-auto md:mx-0">
-                Receba agora <strong>dezenas de arquivos prontos</strong> para imprimir e montar: totens, bambolês,
-                plaquinhas, bandeirinhas, topos de bolo e muito mais!
+
+              <p className="mt-4 text-base md:text-lg text-junina-wood max-w-xl mx-auto">
+                Receba agora dezenas de arquivos prontos para imprimir e montar!
               </p>
 
-              <ul className="mt-6 grid sm:grid-cols-2 gap-2 max-w-xl mx-auto md:mx-0">
+              {/* Center mockup */}
+              <div className="relative mt-6">
+                <img
+                  src={heroMockup}
+                  alt="Mockup do Kit Festa Junina com placa Arraiá, bonecos caipiras, fogueira e lembrancinhas"
+                  width={1280}
+                  height={1024}
+                  className="w-full h-auto"
+                />
+                <img
+                  src={bonfire}
+                  alt=""
+                  aria-hidden
+                  className="absolute -bottom-4 -left-4 w-16 md:w-20 animate-flicker pointer-events-none"
+                />
+              </div>
+            </div>
+
+            {/* RIGHT — price badge + quick benefits */}
+            <div className="flex flex-col items-center gap-6 pt-4">
+              <div className="relative">
+                <div
+                  className="grid place-items-center size-48 md:size-56 rounded-full text-center text-primary-foreground shadow-card-junina border-[6px] border-junina-wood-dark"
+                  style={{ background: "var(--gradient-price)" }}
+                >
+                  <div className="px-2">
+                    <div className="text-xs font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
+                    <div className="text-[11px] font-display uppercase tracking-widest mt-1 text-junina-yellow">Apenas</div>
+                    <div className="font-display text-4xl md:text-5xl leading-none mt-1">R$19,90</div>
+                    <div className="text-[10px] font-display uppercase tracking-widest mt-2 text-junina-yellow">Pagamento Único</div>
+                  </div>
+                </div>
+                <img
+                  src={sunflowers}
+                  alt=""
+                  aria-hidden
+                  className="absolute -top-4 -right-4 w-16 animate-float pointer-events-none"
+                />
+              </div>
+
+              <ul className="grid gap-2 w-full">
                 {quickBenefits.map((b) => (
-                  <li key={b} className="flex items-center gap-2 text-junina-wood font-semibold">
-                    <span className="grid place-items-center size-6 rounded-full bg-junina-green text-white">
-                      <Check className="size-4" />
+                  <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-sm">
+                    <span className="grid place-items-center size-5 rounded-full bg-junina-green text-white shrink-0 mt-0.5">
+                      <Check className="size-3" />
                     </span>
-                    {b}
+                    <span className="uppercase tracking-wide text-xs leading-tight">{b}</span>
                   </li>
                 ))}
               </ul>
             </div>
-
-            {/* Price badge */}
-            <div className="relative mx-auto">
-              <div
-                className="grid place-items-center size-56 md:size-64 rounded-full text-center text-primary-foreground shadow-card-junina border-4 border-junina-wood-dark"
-                style={{ background: "var(--gradient-price)" }}
-              >
-                <div>
-                  <div className="text-sm font-display uppercase tracking-wider opacity-90">De R$97,00</div>
-                  <div className="text-xs font-display uppercase tracking-widest mt-1">Apenas</div>
-                  <div className="font-display text-5xl md:text-6xl leading-none">R$19,90</div>
-                  <div className="text-xs font-display uppercase tracking-widest mt-2">Pagamento Único</div>
-                </div>
-              </div>
-            </div>
           </div>
 
-          {/* Hero image */}
-          <div className="relative mt-10">
-            <div className="rounded-3xl overflow-hidden border-4 border-junina-wood-dark shadow-card-junina bg-card">
-              <img
-                src={heroImg}
-                alt="Kit Festa Junina com totens, bambolês, bandeirinhas e personagens caipiras"
-                width={1280}
-                height={1280}
-                className="w-full h-auto object-cover"
-              />
-            </div>
-            <img
-              src={bonfire}
-              alt=""
-              aria-hidden
-              className="absolute -bottom-6 -left-6 w-24 md:w-32 animate-flicker pointer-events-none"
-            />
-            <img
-              src={sunflowers}
-              alt=""
-              aria-hidden
-              className="absolute -top-6 -right-6 w-24 md:w-32 animate-float pointer-events-none"
-            />
-          </div>
-
+          {/* CTA */}
           <div className="mt-10 flex flex-col items-center gap-3">
-            <CtaButton>Quero meu kit junino agora!</CtaButton>
+            <CtaButton className="w-full max-w-2xl">Quero meu kit junino agora!</CtaButton>
             <p className="flex items-center gap-2 text-sm text-junina-wood font-semibold">
               <Lock className="size-4" /> Acesso imediato após a compra
             </p>

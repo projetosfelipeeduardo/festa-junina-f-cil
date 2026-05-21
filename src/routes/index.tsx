@@ -361,7 +361,7 @@ function Index() {
             <div className="rounded-3xl border-2 border-border bg-card p-6 shadow-card-junina">
               <h3 className="font-display text-xl uppercase text-junina-red mb-3">Bônus Exclusivos</h3>
               <ul className="space-y-3 text-sm text-junina-wood">
-                <li className="flex gap-3"><Gift className="size-5 text-junina-orange shrink-0" /><span><strong>+100 Plaquinhas Extras</strong> — frases prontas para animar sua festa.</span></li>
+                <li className="flex gap-3"><Gift className="size-5 text-junina-orange shrink-0" /><span><strong>+10 Plaquinhas Extras</strong> — frases prontas para animar sua festa.</span></li>
                 <li className="flex gap-3"><Gift className="size-5 text-junina-orange shrink-0" /><span><strong>Moldes Surpresa</strong> — elementos extras para deixar tudo ainda mais completo.</span></li>
                 <li className="flex gap-3"><Gift className="size-5 text-junina-orange shrink-0" /><span><strong>Elementos Bônus</strong> — arquivos decorativos para um arraiá perfeito.</span></li>
               </ul>

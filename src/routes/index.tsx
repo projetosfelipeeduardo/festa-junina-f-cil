@@ -132,7 +132,6 @@ const youReceive = [
   "Bandeirinhas",
   "Plaquinhas Temáticas",
   "Topos de Bolo",
-  "Caixinhas e Lembrancinhas",
   "Moldes Extras",
   "Atualizações Futuras",
 ];

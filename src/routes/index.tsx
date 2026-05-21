@@ -24,7 +24,6 @@ import cardBamboles from "@/assets/card-bamboles.png";
 import cardBandeirinhas from "@/assets/card-bandeirinhas.png";
 import cardTopo from "@/assets/card-topo.png";
 import cardPlaquinhas from "@/assets/card-plaquinhas.png";
-import cardCaixinhas from "@/assets/card-caixinhas.png";
 import sunflowers from "@/assets/sunflowers.png";
 import bonfire from "@/assets/bonfire.png";
 import festa1 from "@/assets/festa-1.jpg";

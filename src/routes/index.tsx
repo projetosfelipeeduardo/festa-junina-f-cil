@@ -164,12 +164,12 @@ function Index() {
             </div>
 
             {/* CENTER — mini headline + title + mockup */}
-            <div className="text-center">
+            <div className="text-center relative">
               <div className="inline-flex items-center gap-2 ribbon-banner px-4 md:px-8 py-2 text-[10px] md:text-sm font-display uppercase tracking-widest">
                 <Sparkles className="size-3" /> Arquivos Digitais para Festa Junina <Sparkles className="size-3" />
               </div>
 
-              <h1 className="font-display uppercase leading-[0.95] mt-4">
+              <h1 className="font-display uppercase leading-[1.15] mt-4">
                 <span className="block text-xl md:text-3xl text-junina-wood">Transforme sua</span>
                 <span className="block text-[2.5rem] md:text-7xl my-1">
                   <span className="text-junina-blue text-stroke-wood">FESTA </span>
@@ -185,24 +185,7 @@ function Index() {
                 Receba agora dezenas de arquivos prontos para imprimir e montar!
               </p>
 
-              {/* Mobile price badge (shown only on mobile, below title) */}
-              <div className="flex lg:hidden justify-center mt-4">
-                <div className="relative">
-                  <div
-                    className="grid place-items-center size-40 rounded-full text-center text-primary-foreground shadow-card-junina border-[5px] border-junina-wood-dark"
-                    style={{ background: "var(--gradient-price)" }}
-                  >
-                    <div className="px-2">
-                      <div className="text-[10px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
-                      <div className="text-[9px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Apenas</div>
-                      <div className="font-display text-3xl leading-none mt-1">R$19,90</div>
-                      <div className="text-[9px] font-display uppercase tracking-widest mt-1 text-junina-yellow">Pagamento Único</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Center mockup */}
+              {/* Center mockup with floating price sticker */}
               <div className="relative mt-6">
                 <img
                   src={heroMockup}
@@ -217,10 +200,25 @@ function Index() {
                   aria-hidden
                   className="absolute -bottom-4 -left-4 w-16 md:w-20 animate-flicker pointer-events-none"
                 />
+
+                {/* Floating price sticker — mobile absolute top-right over mockup */}
+                <div className="lg:hidden absolute -top-6 -right-2 z-10">
+                  <div
+                    className="grid place-items-center size-28 rounded-full text-center text-primary-foreground shadow-card-junina border-[4px] border-junina-wood-dark"
+                    style={{ background: "var(--gradient-price)" }}
+                  >
+                    <div className="px-1">
+                      <div className="text-[8px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
+                      <div className="text-[7px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Apenas</div>
+                      <div className="font-display text-xl leading-none mt-0.5">R$19,90</div>
+                      <div className="text-[7px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Pagamento Único</div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* RIGHT — price badge + quick benefits (hidden on mobile) */}
+            {/* RIGHT — price badge + quick benefits (desktop only) */}
             <div className="hidden lg:flex flex-col items-center gap-6 pt-4">
               <div className="relative">
                 <div
@@ -245,7 +243,7 @@ function Index() {
               <ul className="grid gap-2 w-full">
                 {quickBenefits.map((b) => (
                   <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-sm">
-                    <span className="grid place-items-center size-5 rounded-full bg-junina-green text-white shrink-0 mt-0.5">
+                    <span className="grid place-items-center size-5 rounded-full bg-junina-green text-white shrink-1 mt-0.5">
                       <Check className="size-3" />
                     </span>
                     <span className="uppercase tracking-wide text-xs leading-tight">{b}</span>
@@ -260,7 +258,7 @@ function Index() {
             <ul className="grid grid-cols-2 gap-x-4 gap-y-2 max-w-sm">
               {quickBenefits.map((b) => (
                 <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-xs">
-                  <span className="grid place-items-center size-4 rounded-full bg-junina-green text-white shrink-1 mt-0.5">
+                  <span className="grid place-items-center size-4 rounded-full bg-junina-green text-white shrink-1 mt-1">
                     <Check className="size-2.5" />
                   </span>
                   <span className="uppercase tracking-wide leading-tight">{b}</span>

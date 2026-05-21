@@ -317,7 +317,16 @@ function Index() {
             <figure key={t.name} className="rounded-2xl bg-card border-2 border-border shadow-card-junina p-5">
               <div className="flex gap-4 items-start">
                 <div className="relative shrink-0">
-                  <img src={t.img} alt="" loading="lazy" width={120} height={120} className="size-20 object-cover rounded-xl border-2 border-border" />
+                  <img
+                    src={t.img}
+                    alt=""
+                    loading="lazy"
+                    decoding="async"
+                    fetchPriority="low"
+                    width={120}
+                    height={120}
+                    className="size-20 object-cover rounded-xl border-2 border-border"
+                  />
                   <span className="absolute -bottom-2 -right-2 grid place-items-center size-8 rounded-full bg-junina-green text-white shadow-card-junina">
                     <MessageCircle className="size-4" />
                   </span>

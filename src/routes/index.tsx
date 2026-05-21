@@ -151,8 +151,8 @@ function Index() {
 
         <div className="mx-auto max-w-7xl px-4 mt-4">
           {/* 3-column hero grid: girl | center content | price */}
-          <div className="grid lg:grid-cols-[260px_1fr_240px] gap-4 lg:gap-6 items-start">
-            {/* LEFT — caipira girl */}
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_240px] gap-4 lg:gap-6 items-start">
+            {/* LEFT — caipira girl (hidden on mobile) */}
             <div className="hidden lg:flex justify-center items-end pt-12">
               <img
                 src={caipiraGirl}
@@ -165,25 +165,42 @@ function Index() {
 
             {/* CENTER — mini headline + title + mockup */}
             <div className="text-center">
-              <div className="inline-flex items-center gap-2 ribbon-banner px-8 py-2 text-xs md:text-sm font-display uppercase tracking-widest">
+              <div className="inline-flex items-center gap-2 ribbon-banner px-4 md:px-8 py-2 text-[10px] md:text-sm font-display uppercase tracking-widest">
                 <Sparkles className="size-3" /> Arquivos Digitais para Festa Junina <Sparkles className="size-3" />
               </div>
 
               <h1 className="font-display uppercase leading-[0.95] mt-4">
-                <span className="block text-2xl md:text-3xl text-junina-wood">Transforme sua</span>
-                <span className="block text-5xl md:text-7xl my-1">
+                <span className="block text-xl md:text-3xl text-junina-wood">Transforme sua</span>
+                <span className="block text-[2.5rem] md:text-7xl my-1">
                   <span className="text-junina-blue text-stroke-wood">FESTA </span>
                   <span className="text-junina-red text-stroke-wood">JUNINA</span>
                 </span>
-                <span className="block text-xl md:text-3xl text-junina-wood">em um Arraiá Lindo</span>
-                <span className="block text-2xl md:text-4xl text-junina-orange text-stroke-wood mt-1">
+                <span className="block text-lg md:text-3xl text-junina-wood">em um Arraiá Lindo</span>
+                <span className="block text-xl md:text-4xl text-junina-orange text-stroke-wood mt-1">
                   Gastando Pouco!
                 </span>
               </h1>
 
-              <p className="mt-4 text-base md:text-lg text-junina-wood max-w-xl mx-auto">
+              <p className="mt-4 text-sm md:text-lg text-junina-wood max-w-xl mx-auto">
                 Receba agora dezenas de arquivos prontos para imprimir e montar!
               </p>
+
+              {/* Mobile price badge (shown only on mobile, below title) */}
+              <div className="flex lg:hidden justify-center mt-4">
+                <div className="relative">
+                  <div
+                    className="grid place-items-center size-40 rounded-full text-center text-primary-foreground shadow-card-junina border-[5px] border-junina-wood-dark"
+                    style={{ background: "var(--gradient-price)" }}
+                  >
+                    <div className="px-2">
+                      <div className="text-[10px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
+                      <div className="text-[9px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Apenas</div>
+                      <div className="font-display text-3xl leading-none mt-1">R$19,90</div>
+                      <div className="text-[9px] font-display uppercase tracking-widest mt-1 text-junina-yellow">Pagamento Único</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
 
               {/* Center mockup */}
               <div className="relative mt-6">
@@ -203,8 +220,8 @@ function Index() {
               </div>
             </div>
 
-            {/* RIGHT — price badge + quick benefits */}
-            <div className="flex flex-col items-center gap-6 pt-4">
+            {/* RIGHT — price badge + quick benefits (hidden on mobile) */}
+            <div className="hidden lg:flex flex-col items-center gap-6 pt-4">
               <div className="relative">
                 <div
                   className="grid place-items-center size-48 md:size-56 rounded-full text-center text-primary-foreground shadow-card-junina border-[6px] border-junina-wood-dark"
@@ -238,8 +255,22 @@ function Index() {
             </div>
           </div>
 
+          {/* Mobile quick benefits (below mockup) */}
+          <div className="flex lg:hidden justify-center mt-6">
+            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 max-w-sm">
+              {quickBenefits.map((b) => (
+                <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-xs">
+                  <span className="grid place-items-center size-4 rounded-full bg-junina-green text-white shrink-1 mt-0.5">
+                    <Check className="size-2.5" />
+                  </span>
+                  <span className="uppercase tracking-wide leading-tight">{b}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+
           {/* CTA */}
-          <div className="mt-10 flex flex-col items-center gap-3">
+          <div className="mt-8 flex flex-col items-center gap-3">
             <CtaButton className="w-full max-w-2xl">Quero meu kit junino agora!</CtaButton>
             <p className="flex items-center gap-2 text-sm text-junina-wood font-semibold">
               <Lock className="size-4" /> Acesso imediato após a compra

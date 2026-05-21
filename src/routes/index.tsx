@@ -185,7 +185,7 @@ function Index() {
                 Receba agora dezenas de arquivos prontos para imprimir e montar!
               </p>
 
-              {/* Center mockup with floating price sticker */}
+              {/* Center mockup */}
               <div className="relative mt-6 max-w-4xl mx-auto">
                 <img
                   src={heroMockup}
@@ -200,20 +200,6 @@ function Index() {
                   aria-hidden
                   className="absolute -bottom-4 -left-4 w-16 md:w-20 animate-flicker pointer-events-none"
                 />
-
-                {/* Floating price sticker — top-right over mockup */}
-                <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
-                  <div
-                    className="grid place-items-center size-28 md:size-44 rounded-full text-center text-primary-foreground shadow-card-junina border-[3px] md:border-[5px] border-junina-wood-dark"
-                    style={{ background: "var(--gradient-price)" }}
-                  >
-                    <div className="px-1 md:px-2">
-                      <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest text-junina-yellow">Apenas</div>
-                      <div className="font-display text-xl md:text-4xl leading-none mt-0.5 md:mt-1">R$19,90</div>
-                      <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest mt-0.5 md:mt-1 text-junina-yellow">Pagamento Único</div>
-                    </div>
-                  </div>
-                </div>
               </div>
 
               {/* Quick benefits below mockup */}

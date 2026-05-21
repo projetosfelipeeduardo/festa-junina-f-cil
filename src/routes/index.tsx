@@ -263,7 +263,7 @@ function Index() {
       </section>
 
       {/* SECTION 4 - STEPS */}
-      <section className="py-16">
+      <section className="py-10">
         <SectionTitle>Monte Sua Festa em Minutos 🚀</SectionTitle>
         <div className="mx-auto max-w-5xl px-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((s) => (

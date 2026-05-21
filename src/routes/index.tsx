@@ -322,7 +322,7 @@ function Index() {
       </section>
 
       {/* SECTION 7 - OFFER */}
-      <section className="py-16 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
+      <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
         <SectionTitle>Oferta Especial de Festa Junina 🎉</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-3 gap-6">
           {/* Price column */}

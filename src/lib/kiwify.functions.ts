@@ -61,7 +61,7 @@ async function signRequest(
   const key = await importEd25519PrivateKey(privateKeyB64);
   const payload = `${uri}:${method}:${body}:${timestamp}`;
   const data = new TextEncoder().encode(payload);
-  const sig = await crypto.subtle.sign({ name: "Ed25519" }, key, data);
+  const sig = await crypto.subtle.sign({ name: "Ed25519" }, key, toAB(data));
   return uint8ToBase64(new Uint8Array(sig));
 }
 

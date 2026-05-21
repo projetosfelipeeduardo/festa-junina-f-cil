@@ -19,8 +19,14 @@ function base64ToUint8Array(b64: string): Uint8Array {
 
 function uint8ToBase64(bytes: Uint8Array): string {
   let s = "";
-  for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]);
+  for (let i = 0; i < bytes.length; i++) s += String.fromCharCode(bytes[i]!);
   return btoa(s);
+}
+
+function toAB(u8: Uint8Array): ArrayBuffer {
+  const ab = new ArrayBuffer(u8.byteLength);
+  new Uint8Array(ab).set(u8);
+  return ab;
 }
 
 // Try to import Ed25519 private key from PKCS#8 or raw 32-byte seed (base64).

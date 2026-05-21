@@ -24,7 +24,6 @@ import cardBamboles from "@/assets/card-bamboles.png";
 import cardBandeirinhas from "@/assets/card-bandeirinhas.png";
 import cardTopo from "@/assets/card-topo.png";
 import cardPlaquinhas from "@/assets/card-plaquinhas.png";
-import cardCaixinhas from "@/assets/card-caixinhas.png";
 import sunflowers from "@/assets/sunflowers.png";
 import bonfire from "@/assets/bonfire.png";
 import festa1 from "@/assets/festa-1.jpg";
@@ -97,7 +96,6 @@ const deliverables = [
   { img: cardBandeirinhas, title: "Bandeirinhas", desc: "Vários modelos coloridos prontos para imprimir e enfeitar tudo." },
   { img: cardTopo, title: "Topo de Bolo", desc: "Topos temáticos com fogueira, chapéu, casal caipira e milho." },
   { img: cardPlaquinhas, title: "Plaquinhas Divertidas", desc: "“Êta Trem Bão!”, “Arraiá dos Bão”, “Olha a Chuva!” e muito mais." },
-  { img: cardCaixinhas, title: "Caixinhas e Lembrancinhas", desc: "Modelos para doces, pipoca, paçoca e brindes lindos." },
 ];
 
 const steps = [
@@ -134,7 +132,6 @@ const youReceive = [
   "Bandeirinhas",
   "Plaquinhas Temáticas",
   "Topos de Bolo",
-  "Caixinhas e Lembrancinhas",
   "Moldes Extras",
   "Atualizações Futuras",
 ];

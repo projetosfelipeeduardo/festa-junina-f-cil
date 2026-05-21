@@ -9,6 +9,7 @@ import {
   ArrowLeft,
   Sparkles,
   QrCode,
+  ChevronDown,
 } from "lucide-react";
 
 import { createKiwifyPixCharge } from "@/lib/kiwify.functions";
@@ -93,6 +94,7 @@ function CheckoutPage() {
   const [email, setEmail] = useState("");
   const [state, setState] = useState<ChargeState>({ status: "idle" });
   const [copied, setCopied] = useState(false);
+  const [summaryOpen, setSummaryOpen] = useState(true);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -164,8 +166,96 @@ function CheckoutPage() {
           </div>
         </div>
 
-        <div className="grid lg:grid-cols-[1fr_420px] gap-8 items-start">
-          {/* LEFT — form / pix */}
+        <div className="mx-auto max-w-2xl flex flex-col gap-6">
+          {/* TOP — order summary (collapsible) */}
+          <aside className="rounded-3xl border-2 border-border bg-card shadow-card-junina overflow-hidden">
+            <button
+              type="button"
+              onClick={() => setSummaryOpen((v) => !v)}
+              aria-expanded={summaryOpen}
+              className="w-full flex items-center justify-between gap-3 p-5 hover:bg-junina-cream/40 transition-colors"
+            >
+              <div className="flex items-center gap-3">
+                <QrCode className="size-6 text-junina-red" />
+                <h3 className="font-display text-lg md:text-xl uppercase text-junina-red">
+                  Resumo do Pedido
+                </h3>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="font-display text-junina-red text-xl md:text-2xl">
+                  R$ 24,90
+                </span>
+                <ChevronDown
+                  className={`size-5 text-junina-wood transition-transform duration-300 ${
+                    summaryOpen ? "rotate-180" : "rotate-0"
+                  }`}
+                />
+              </div>
+            </button>
+
+            <div
+              className={`grid transition-all duration-300 ease-out ${
+                summaryOpen ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <div className="px-5 pb-5 pt-1">
+                  <div className="rounded-2xl bg-junina-cream border border-border p-4 flex gap-4 items-center">
+                    <img
+                      src={heroMockup}
+                      alt="Kit Festa Junina"
+                      width={120}
+                      height={120}
+                      className="w-20 h-20 object-contain"
+                    />
+                    <div className="text-left">
+                      <div className="font-display text-junina-wood text-base leading-tight">
+                        Kit Festa Junina para Imprimir
+                      </div>
+                      <div className="text-xs text-junina-wood/80 mt-1">
+                        Acesso digital imediato
+                      </div>
+                    </div>
+                  </div>
+
+                  <ul className="mt-4 space-y-2 text-sm text-junina-wood">
+                    {[
+                      "Totens, bambolês e bandeirinhas",
+                      "Topos de bolo e plaquinhas",
+                      "+10 Plaquinhas Extras (bônus)",
+                      "Atualizações futuras",
+                    ].map((i) => (
+                      <li key={i} className="flex items-center gap-2">
+                        <span className="grid place-items-center size-5 rounded-md bg-junina-green text-white">
+                          <Check className="size-3" />
+                        </span>
+                        {i}
+                      </li>
+                    ))}
+                  </ul>
+
+                  <div className="mt-5 border-t border-dashed border-junina-wood/30 pt-4">
+                    <div className="flex justify-between text-sm text-junina-wood">
+                      <span>De</span>
+                      <span className="line-through opacity-70">R$ 97,00</span>
+                    </div>
+                    <div className="flex justify-between items-end mt-1">
+                      <span className="font-display uppercase text-junina-wood">Total</span>
+                      <span className="font-display text-junina-red text-3xl">R$ 24,90</span>
+                    </div>
+                    <div className="text-xs text-junina-wood/70 text-right">Pagamento único via PIX</div>
+                  </div>
+
+                  <div className="mt-4 rounded-xl border border-border bg-junina-cream/60 p-3 text-xs text-junina-wood flex gap-2 items-start">
+                    <ShieldCheck className="size-4 text-junina-green shrink-0 mt-0.5" />
+                    <span>Garantia de 7 dias. Se não gostar, devolvemos 100% do valor.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </aside>
+
+          {/* BOTTOM — form / pix */}
           <section className="rounded-3xl border-4 border-junina-wood-dark bg-card p-6 md:p-8 shadow-card-junina">
             {state.status !== "success" ? (
               <>
@@ -296,65 +386,6 @@ function CheckoutPage() {
               </div>
             )}
           </section>
-
-          {/* RIGHT — summary */}
-          <aside className="rounded-3xl border-2 border-border bg-card p-6 shadow-card-junina lg:sticky lg:top-4">
-            <div className="flex items-center gap-3 mb-4">
-              <QrCode className="size-6 text-junina-red" />
-              <h3 className="font-display text-xl uppercase text-junina-red">Resumo do Pedido</h3>
-            </div>
-
-            <div className="rounded-2xl bg-junina-cream border border-border p-4 flex gap-4 items-center">
-              <img
-                src={heroMockup}
-                alt="Kit Festa Junina"
-                width={120}
-                height={120}
-                className="w-20 h-20 object-contain"
-              />
-              <div className="text-left">
-                <div className="font-display text-junina-wood text-base leading-tight">
-                  Kit Festa Junina para Imprimir
-                </div>
-                <div className="text-xs text-junina-wood/80 mt-1">
-                  Acesso digital imediato
-                </div>
-              </div>
-            </div>
-
-            <ul className="mt-4 space-y-2 text-sm text-junina-wood">
-              {[
-                "Totens, bambolês e bandeirinhas",
-                "Topos de bolo e plaquinhas",
-                "+10 Plaquinhas Extras (bônus)",
-                "Atualizações futuras",
-              ].map((i) => (
-                <li key={i} className="flex items-center gap-2">
-                  <span className="grid place-items-center size-5 rounded-md bg-junina-green text-white">
-                    <Check className="size-3" />
-                  </span>
-                  {i}
-                </li>
-              ))}
-            </ul>
-
-            <div className="mt-5 border-t border-dashed border-junina-wood/30 pt-4">
-              <div className="flex justify-between text-sm text-junina-wood">
-                <span>De</span>
-                <span className="line-through opacity-70">R$ 97,00</span>
-              </div>
-              <div className="flex justify-between items-end mt-1">
-                <span className="font-display uppercase text-junina-wood">Total</span>
-                <span className="font-display text-junina-red text-3xl">R$ 24,90</span>
-              </div>
-              <div className="text-xs text-junina-wood/70 text-right">Pagamento único via PIX</div>
-            </div>
-
-            <div className="mt-4 rounded-xl border border-border bg-junina-cream/60 p-3 text-xs text-junina-wood flex gap-2 items-start">
-              <ShieldCheck className="size-4 text-junina-green shrink-0 mt-0.5" />
-              <span>Garantia de 7 dias. Se não gostar, devolvemos 100% do valor.</span>
-            </div>
-          </aside>
         </div>
       </div>
     </main>

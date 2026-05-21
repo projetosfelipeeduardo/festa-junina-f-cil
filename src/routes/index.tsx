@@ -11,7 +11,6 @@ import {
   FolderCheck,
   Heart,
   ShieldCheck,
-  Lock,
   Star,
   MessageCircle,
   ChevronRight,

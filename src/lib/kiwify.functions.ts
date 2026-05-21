@@ -153,10 +153,11 @@ export const createKiwifyPixCharge = createServerFn({ method: "POST" })
     try {
       signature = await signRequest(privateKey, uri, method, body, timestamp);
     } catch (err) {
+      const msg = err instanceof Error ? err.message : String(err);
       console.error("Kiwify signature error:", err);
       return {
         ok: false as const,
-        error: "Erro ao assinar a requisição de pagamento.",
+        error: `Erro ao assinar a requisição: ${msg}`,
       };
     }
 

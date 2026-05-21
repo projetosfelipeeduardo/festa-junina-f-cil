@@ -168,7 +168,7 @@ function Index() {
 
               <h1 className="font-display uppercase leading-[1.15] mt-4">
                 <span className="block text-xl md:text-3xl text-junina-wood">Transforme sua</span>
-                <span className="block text-[2.5rem] md:text-7xl my-1">
+                <span className="block text-[3.25rem] md:text-8xl my-1">
                   <span className="text-junina-blue text-stroke-wood">FESTA </span>
                   <span className="text-junina-red text-stroke-wood">JUNINA</span>
                 </span>

@@ -150,8 +150,8 @@ function Index() {
         <FlagBunting count={28} />
 
         <div className="mx-auto max-w-7xl px-4 mt-4">
-          {/* 3-column hero grid: girl | center content | price */}
-          <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr_240px] gap-4 lg:gap-6 items-start">
+          {/* 2-column hero: girl | center content (title + mockup + price sticker) */}
+          <div className="grid grid-cols-1 lg:grid-cols-[260px_1fr] gap-4 lg:gap-6 items-start">
             {/* LEFT — caipira girl (hidden on mobile) */}
             <div className="hidden lg:flex justify-center items-end pt-12">
               <img
@@ -163,13 +163,13 @@ function Index() {
               />
             </div>
 
-            {/* CENTER — mini headline + title + mockup */}
-            <div className="text-center">
+            {/* CENTER — mini headline + title + mockup + floating price sticker */}
+            <div className="text-center relative">
               <div className="inline-flex items-center gap-2 ribbon-banner px-4 md:px-8 py-2 text-[10px] md:text-sm font-display uppercase tracking-widest">
                 <Sparkles className="size-3" /> Arquivos Digitais para Festa Junina <Sparkles className="size-3" />
               </div>
 
-              <h1 className="font-display uppercase leading-[0.95] mt-4">
+              <h1 className="font-display uppercase leading-[1.15] mt-4">
                 <span className="block text-xl md:text-3xl text-junina-wood">Transforme sua</span>
                 <span className="block text-[2.5rem] md:text-7xl my-1">
                   <span className="text-junina-blue text-stroke-wood">FESTA </span>
@@ -185,25 +185,8 @@ function Index() {
                 Receba agora dezenas de arquivos prontos para imprimir e montar!
               </p>
 
-              {/* Mobile price badge (shown only on mobile, below title) */}
-              <div className="flex lg:hidden justify-center mt-4">
-                <div className="relative">
-                  <div
-                    className="grid place-items-center size-40 rounded-full text-center text-primary-foreground shadow-card-junina border-[5px] border-junina-wood-dark"
-                    style={{ background: "var(--gradient-price)" }}
-                  >
-                    <div className="px-2">
-                      <div className="text-[10px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
-                      <div className="text-[9px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Apenas</div>
-                      <div className="font-display text-3xl leading-none mt-1">R$19,90</div>
-                      <div className="text-[9px] font-display uppercase tracking-widest mt-1 text-junina-yellow">Pagamento Único</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Center mockup */}
-              <div className="relative mt-6">
+              {/* Center mockup with floating price sticker */}
+              <div className="relative mt-6 max-w-4xl mx-auto">
                 <img
                   src={heroMockup}
                   alt="Mockup do Kit Festa Junina com placa Arraiá, bonecos caipiras, fogueira e lembrancinhas"
@@ -217,56 +200,37 @@ function Index() {
                   aria-hidden
                   className="absolute -bottom-4 -left-4 w-16 md:w-20 animate-flicker pointer-events-none"
                 />
-              </div>
-            </div>
 
-            {/* RIGHT — price badge + quick benefits (hidden on mobile) */}
-            <div className="hidden lg:flex flex-col items-center gap-6 pt-4">
-              <div className="relative">
-                <div
-                  className="grid place-items-center size-48 md:size-56 rounded-full text-center text-primary-foreground shadow-card-junina border-[6px] border-junina-wood-dark"
-                  style={{ background: "var(--gradient-price)" }}
-                >
-                  <div className="px-2">
-                    <div className="text-xs font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
-                    <div className="text-[11px] font-display uppercase tracking-widest mt-1 text-junina-yellow">Apenas</div>
-                    <div className="font-display text-4xl md:text-5xl leading-none mt-1">R$19,90</div>
-                    <div className="text-[10px] font-display uppercase tracking-widest mt-2 text-junina-yellow">Pagamento Único</div>
+                {/* Floating price sticker — top-right over mockup */}
+                <div className="absolute top-2 right-2 md:top-4 md:right-4 z-10">
+                  <div
+                    className="grid place-items-center size-28 md:size-44 rounded-full text-center text-primary-foreground shadow-card-junina border-[3px] md:border-[5px] border-junina-wood-dark"
+                    style={{ background: "var(--gradient-price)" }}
+                  >
+                    <div className="px-1 md:px-2">
+                      <div className="text-[7px] md:text-[10px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
+                      <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest mt-0.5 md:mt-1 text-junina-yellow">Apenas</div>
+                      <div className="font-display text-xl md:text-4xl leading-none mt-0.5 md:mt-1">R$19,90</div>
+                      <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest mt-0.5 md:mt-1 text-junina-yellow">Pagamento Único</div>
+                    </div>
                   </div>
                 </div>
-                <img
-                  src={sunflowers}
-                  alt=""
-                  aria-hidden
-                  className="absolute -top-4 -right-4 w-16 animate-float pointer-events-none"
-                />
               </div>
 
-              <ul className="grid gap-2 w-full">
-                {quickBenefits.map((b) => (
-                  <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-sm">
-                    <span className="grid place-items-center size-5 rounded-full bg-junina-green text-white shrink-0 mt-0.5">
-                      <Check className="size-3" />
-                    </span>
-                    <span className="uppercase tracking-wide text-xs leading-tight">{b}</span>
-                  </li>
-                ))}
-              </ul>
+              {/* Quick benefits below mockup */}
+              <div className="flex justify-center mt-6">
+                <ul className="grid grid-cols-2 md:grid-cols-4 gap-x-4 gap-y-2 max-w-xl">
+                  {quickBenefits.map((b) => (
+                    <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-xs">
+                      <span className="grid place-items-center size-4 rounded-full bg-junina-green text-white shrink-0 mt-0.5">
+                        <Check className="size-2.5" />
+                      </span>
+                      <span className="uppercase tracking-wide leading-tight">{b}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </div>
-          </div>
-
-          {/* Mobile quick benefits (below mockup) */}
-          <div className="flex lg:hidden justify-center mt-6">
-            <ul className="grid grid-cols-2 gap-x-4 gap-y-2 max-w-sm">
-              {quickBenefits.map((b) => (
-                <li key={b} className="flex items-start gap-2 text-junina-wood font-semibold text-xs">
-                  <span className="grid place-items-center size-4 rounded-full bg-junina-green text-white shrink-1 mt-0.5">
-                    <Check className="size-2.5" />
-                  </span>
-                  <span className="uppercase tracking-wide leading-tight">{b}</span>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* CTA */}

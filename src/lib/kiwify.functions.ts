@@ -1,5 +1,6 @@
 import { createServerFn } from "@tanstack/react-start";
 import { z } from "zod";
+import * as ed from "@noble/ed25519";
 
 const inputSchema = z.object({
   amount_in_cents: z.number().int().positive(),
@@ -33,90 +34,55 @@ function uint8ToBase64(bytes: Uint8Array): string {
   return btoa(s);
 }
 
-function toAB(u8: Uint8Array): ArrayBuffer {
-  const ab = new ArrayBuffer(u8.byteLength);
-  new Uint8Array(ab).set(u8);
-  return ab;
-}
-
-// Decode the KIWIFY_PRIVATE_KEY env var. Accepts:
-// - PEM ("-----BEGIN PRIVATE KEY-----..." or "-----BEGIN ED25519 PRIVATE KEY-----...")
-// - Base64 (or base64url) of a PKCS#8 blob
-// - Base64 (or base64url) of a 32-byte raw seed
-// - Hex (with or without 0x prefix) of a PKCS#8 blob or 32-byte raw seed
-function decodePrivateKey(input: string): Uint8Array {
+// Extract the 32-byte Ed25519 seed from any common format the user might paste:
+// - PEM ("-----BEGIN ... PRIVATE KEY-----")
+// - base64 / base64url of PKCS#8 (48 bytes) or raw seed (32 bytes) or seed+pub (64 bytes)
+// - hex of any of the above
+function extractSeed(input: string): Uint8Array {
   const trimmed = input.trim();
 
-  // PEM
+  let raw: Uint8Array;
+
   if (trimmed.includes("-----BEGIN")) {
     const body = trimmed
       .replace(/-----BEGIN [^-]+-----/g, "")
       .replace(/-----END [^-]+-----/g, "")
       .replace(/\s+/g, "");
-    return base64ToUint8Array(body);
+    raw = base64ToUint8Array(body);
+  } else {
+    const hexCandidate = trimmed.replace(/\s+/g, "");
+    const isHex =
+      /^(0x)?[0-9a-fA-F]+$/.test(hexCandidate) &&
+      hexCandidate.replace(/^0x/i, "").length % 2 === 0 &&
+      (hexCandidate.replace(/^0x/i, "").length === 64 ||
+        hexCandidate.replace(/^0x/i, "").length === 96 ||
+        hexCandidate.replace(/^0x/i, "").length === 128);
+    raw = isHex ? hexToUint8Array(hexCandidate) : base64ToUint8Array(trimmed);
   }
 
-  // Hex (only 0-9a-f, even length, no other chars)
-  const hexOnly = trimmed.replace(/\s+/g, "");
-  if (/^(0x)?[0-9a-fA-F]+$/.test(hexOnly) && hexOnly.replace(/^0x/i, "").length % 2 === 0) {
-    const expectedLen = hexOnly.replace(/^0x/i, "").length / 2;
-    // Heuristic: hex of a 32-byte seed is 64 chars; PKCS#8 is typically 46-48 bytes (92-96 chars).
-    if (expectedLen === 32 || expectedLen >= 40) {
-      return hexToUint8Array(hexOnly);
-    }
-  }
+  // PKCS#8 Ed25519 is 48 bytes; the last 32 bytes are the seed
+  if (raw.length === 48 && raw[0] === 0x30) return raw.slice(16, 48);
+  if (raw.length >= 46 && raw[0] === 0x30) return raw.slice(raw.length - 32);
+  if (raw.length === 32) return raw;
+  if (raw.length === 64) return raw.slice(0, 32);
 
-  // Base64 / base64url
-  return base64ToUint8Array(trimmed);
-}
-
-async function importEd25519PrivateKey(input: string): Promise<CryptoKey> {
-  const raw = decodePrivateKey(input);
-
-  // PKCS#8 starts with 0x30 (SEQUENCE) and is at least ~46 bytes for Ed25519
-  if (raw.length >= 46 && raw[0] === 0x30) {
-    return crypto.subtle.importKey("pkcs8", toAB(raw), { name: "Ed25519" }, false, ["sign"]);
-  }
-  if (raw.length === 32) {
-    const header = new Uint8Array([
-      0x30, 0x2e, 0x02, 0x01, 0x00, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70,
-      0x04, 0x22, 0x04, 0x20,
-    ]);
-    const pkcs8 = new Uint8Array(header.length + raw.length);
-    pkcs8.set(header, 0);
-    pkcs8.set(raw, header.length);
-    return crypto.subtle.importKey("pkcs8", toAB(pkcs8), { name: "Ed25519" }, false, ["sign"]);
-  }
-  // 64 bytes: some libraries export seed+public concatenated; first 32 is the seed
-  if (raw.length === 64) {
-    const seed = raw.slice(0, 32);
-    const header = new Uint8Array([
-      0x30, 0x2e, 0x02, 0x01, 0x00, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70,
-      0x04, 0x22, 0x04, 0x20,
-    ]);
-    const pkcs8 = new Uint8Array(header.length + seed.length);
-    pkcs8.set(header, 0);
-    pkcs8.set(seed, header.length);
-    return crypto.subtle.importKey("pkcs8", toAB(pkcs8), { name: "Ed25519" }, false, ["sign"]);
-  }
   throw new Error(
-    `KIWIFY_PRIVATE_KEY format not recognized (decoded length: ${raw.length} bytes). ` +
-      `Expected PEM, base64/hex of PKCS#8, or 32-byte raw Ed25519 seed.`,
+    `formato da chave não reconhecido (${raw.length} bytes). Use PEM, base64 PKCS#8, ou seed Ed25519 de 32 bytes.`,
   );
 }
 
 async function signRequest(
-  privateKeyB64: string,
+  privateKeyStr: string,
   uri: string,
   method: string,
   body: string,
   timestamp: string,
 ): Promise<string> {
-  const key = await importEd25519PrivateKey(privateKeyB64);
+  const seed = extractSeed(privateKeyStr);
   const payload = `${uri}:${method}:${body}:${timestamp}`;
   const data = new TextEncoder().encode(payload);
-  const sig = await crypto.subtle.sign({ name: "Ed25519" }, key, toAB(data));
-  return uint8ToBase64(new Uint8Array(sig));
+  const sig = await ed.signAsync(data, seed);
+  return uint8ToBase64(sig);
 }
 
 export const createKiwifyPixCharge = createServerFn({ method: "POST" })

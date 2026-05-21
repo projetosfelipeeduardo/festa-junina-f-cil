@@ -143,7 +143,7 @@ function Index() {
   return (
     <main className="min-h-screen bg-paper text-foreground overflow-x-hidden">
       {/* HERO */}
-      <section className="relative pt-4 pb-8">
+      <section className="relative pt-4 pb-2">
         <FlagBunting count={28} />
 
         <div className="mx-auto max-w-7xl px-4 mt-4">

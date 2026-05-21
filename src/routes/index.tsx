@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   Check,
   Download,
@@ -359,9 +359,9 @@ function Index() {
             <div className="font-display text-junina-red text-5xl md:text-6xl my-2">R$24,90</div>
             <div className="text-sm text-junina-wood font-semibold">Pagamento Único</div>
             <div className="mt-6">
-              <a href="#checkout">
+              <Link to="/checkout">
                 <CtaButton>Quero garantir agora</CtaButton>
-              </a>
+              </Link>
             </div>
             <p className="text-xs text-junina-wood mt-3">Acesso imediato após a compra</p>
           </div>

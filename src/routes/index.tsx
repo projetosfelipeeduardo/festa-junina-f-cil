@@ -216,13 +216,6 @@ function Index() {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <CtaButton className="w-full max-w-2xl">Quero meu kit junino agora!</CtaButton>
-            <p className="flex items-center gap-2 text-sm text-junina-wood font-semibold">
-              <Lock className="size-4" /> Acesso imediato após a compra
-            </p>
-          </div>
         </div>
       </section>
 

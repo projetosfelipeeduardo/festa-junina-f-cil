@@ -153,6 +153,8 @@ function Index() {
                 alt="Personagem caipira"
                 width={520}
                 height={1040}
+                loading="lazy"
+                decoding="async"
                 className="w-full max-w-[280px] h-auto drop-shadow-2xl animate-float"
               />
             </div>

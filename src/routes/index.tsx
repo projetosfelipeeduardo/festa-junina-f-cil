@@ -96,7 +96,6 @@ const deliverables = [
   { img: cardBandeirinhas, title: "Bandeirinhas", desc: "Vários modelos coloridos prontos para imprimir e enfeitar tudo." },
   { img: cardTopo, title: "Topo de Bolo", desc: "Topos temáticos com fogueira, chapéu, casal caipira e milho." },
   { img: cardPlaquinhas, title: "Plaquinhas Divertidas", desc: "“Êta Trem Bão!”, “Arraiá dos Bão”, “Olha a Chuva!” e muito mais." },
-  { img: cardCaixinhas, title: "Caixinhas e Lembrancinhas", desc: "Modelos para doces, pipoca, paçoca e brindes lindos." },
 ];
 
 const steps = [

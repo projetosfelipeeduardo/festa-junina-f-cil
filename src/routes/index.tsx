@@ -294,7 +294,7 @@ function Index() {
       </section>
 
       {/* SECTION 6 - TESTIMONIALS */}
-      <section className="py-16">
+      <section className="py-10">
         <SectionTitle>Quem Comprou, Aprovou ❤️</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (

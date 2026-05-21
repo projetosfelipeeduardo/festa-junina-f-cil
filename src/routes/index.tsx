@@ -69,7 +69,7 @@ function FlagBunting({ count = 24 }: { count?: number }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex justify-center mb-10">
+    <div className="flex justify-center mb-6">
       <div className="ribbon-banner px-12 py-3 text-white font-display text-2xl md:text-3xl tracking-wide uppercase">
         {children}
       </div>

@@ -11,7 +11,6 @@ import {
   FolderCheck,
   Heart,
   ShieldCheck,
-  Lock,
   Star,
   MessageCircle,
   ChevronRight,
@@ -70,7 +69,7 @@ function FlagBunting({ count = 24 }: { count?: number }) {
 
 function SectionTitle({ children }: { children: React.ReactNode }) {
   return (
-    <div className="flex justify-center mb-10">
+    <div className="flex justify-center mb-6">
       <div className="ribbon-banner px-12 py-3 text-white font-display text-2xl md:text-3xl tracking-wide uppercase">
         {children}
       </div>
@@ -144,7 +143,7 @@ function Index() {
   return (
     <main className="min-h-screen bg-paper text-foreground overflow-x-hidden">
       {/* HERO */}
-      <section className="relative pt-4 pb-12">
+      <section className="relative pt-4 pb-8">
         <FlagBunting count={28} />
 
         <div className="mx-auto max-w-7xl px-4 mt-4">
@@ -216,18 +215,11 @@ function Index() {
             </div>
           </div>
 
-          {/* CTA */}
-          <div className="mt-8 flex flex-col items-center gap-3">
-            <CtaButton className="w-full max-w-2xl">Quero meu kit junino agora!</CtaButton>
-            <p className="flex items-center gap-2 text-sm text-junina-wood font-semibold">
-              <Lock className="size-4" /> Acesso imediato após a compra
-            </p>
-          </div>
         </div>
       </section>
 
       {/* SECTION 2 - DELIVERABLES */}
-      <section className="py-16 relative">
+      <section className="py-10 relative">
         <SectionTitle>Tudo Que Você Vai Receber 🎁</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {deliverables.map((d) => (
@@ -253,7 +245,7 @@ function Index() {
       </section>
 
       {/* SECTION 3 - GALLERY */}
-      <section className="py-16 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
+      <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
         <SectionTitle>Sua Festa Vai Ficar Linda ✨</SectionTitle>
         <div className="mx-auto max-w-5xl px-4 text-center">
           <p className="text-lg text-junina-wood max-w-2xl mx-auto">
@@ -271,7 +263,7 @@ function Index() {
       </section>
 
       {/* SECTION 4 - STEPS */}
-      <section className="py-16">
+      <section className="py-10">
         <SectionTitle>Monte Sua Festa em Minutos 🚀</SectionTitle>
         <div className="mx-auto max-w-5xl px-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {steps.map((s) => (
@@ -288,7 +280,7 @@ function Index() {
       </section>
 
       {/* SECTION 5 - BENEFITS */}
-      <section className="py-16 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
+      <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
         <SectionTitle>Por Que Vale Muito Mais Que R$19,90?</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {benefits.map((b) => (
@@ -302,7 +294,7 @@ function Index() {
       </section>
 
       {/* SECTION 6 - TESTIMONIALS */}
-      <section className="py-16">
+      <section className="py-10">
         <SectionTitle>Quem Comprou, Aprovou ❤️</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid md:grid-cols-3 gap-6">
           {testimonials.map((t) => (
@@ -330,7 +322,7 @@ function Index() {
       </section>
 
       {/* SECTION 7 - OFFER */}
-      <section className="py-16 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
+      <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
         <SectionTitle>Oferta Especial de Festa Junina 🎉</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid lg:grid-cols-3 gap-6">
           {/* Price column */}

@@ -202,16 +202,16 @@ function Index() {
                 />
 
                 {/* Floating price sticker — mobile absolute top-right over mockup */}
-                <div className="lg:hidden absolute -top-6 -right-2 z-10">
+                <div className="lg:hidden absolute top-2 right-2 z-10">
                   <div
-                    className="grid place-items-center size-28 rounded-full text-center text-primary-foreground shadow-card-junina border-[4px] border-junina-wood-dark"
+                    className="grid place-items-center size-24 rounded-full text-center text-primary-foreground shadow-card-junina border-[3px] border-junina-wood-dark"
                     style={{ background: "var(--gradient-price)" }}
                   >
                     <div className="px-1">
-                      <div className="text-[8px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
-                      <div className="text-[7px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Apenas</div>
-                      <div className="font-display text-xl leading-none mt-0.5">R$19,90</div>
-                      <div className="text-[7px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Pagamento Único</div>
+                      <div className="text-[7px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
+                      <div className="text-[6px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Apenas</div>
+                      <div className="font-display text-lg leading-none mt-0.5">R$19,90</div>
+                      <div className="text-[6px] font-display uppercase tracking-widest mt-0.5 text-junina-yellow">Pagamento Único</div>
                     </div>
                   </div>
                 </div>

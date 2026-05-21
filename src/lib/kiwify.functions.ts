@@ -8,7 +8,15 @@ ed.hashes.sha512 = sha512;
 const inputSchema = z.object({
   amount_in_cents: z.number().int().positive(),
   name: z.string().trim().min(1).max(120),
-  document_number: z.string().trim().min(11).max(20),
+  document_number: z
+    .string()
+    .trim()
+    .min(11)
+    .max(20)
+    .refine((value) => {
+      const digits = value.replace(/\D+/g, "");
+      return digits.length === 11 || digits.length === 14;
+    }, "Informe um CPF ou CNPJ válido."),
   email: z.string().trim().email().max(180).optional(),
   external_reference_id: z.string().trim().min(1).max(120).optional(),
 });
@@ -186,11 +194,10 @@ export const createKiwifyPixCharge = createServerFn({ method: "POST" })
     try {
       signature = await signRequest(privateKey, uri, method, body, timestamp);
     } catch (err) {
-      const msg = err instanceof Error ? err.message : String(err);
       console.error("Kiwify signature error:", err);
       return {
         ok: false as const,
-        error: `Erro ao assinar a requisição: ${msg}`,
+        error: "Erro ao preparar a requisição de pagamento. Tente novamente.",
       };
     }
 

@@ -208,8 +208,7 @@ function Index() {
                     style={{ background: "var(--gradient-price)" }}
                   >
                     <div className="px-1 md:px-2">
-                      <div className="text-[7px] md:text-[10px] font-display uppercase tracking-wider opacity-90 line-through">De R$97,00</div>
-                      <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest mt-0.5 md:mt-1 text-junina-yellow">Apenas</div>
+                      <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest text-junina-yellow">Apenas</div>
                       <div className="font-display text-xl md:text-4xl leading-none mt-0.5 md:mt-1">R$19,90</div>
                       <div className="text-[6px] md:text-[9px] font-display uppercase tracking-widest mt-0.5 md:mt-1 text-junina-yellow">Pagamento Único</div>
                     </div>

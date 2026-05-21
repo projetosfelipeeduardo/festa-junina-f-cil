@@ -379,7 +379,7 @@ function Index() {
 
 
       {/* FOOTER */}
-      <footer className="bg-junina-wood-dark text-white/90 mt-8">
+      <footer className="bg-junina-wood-dark text-junina-wood mt-8">
         <FlagBunting count={28} />
         <div className="mx-auto max-w-5xl px-4 py-8 text-center text-sm">
           <p>© 2024 Kit Festa Junina para Imprimir — Todos os direitos reservados.</p>

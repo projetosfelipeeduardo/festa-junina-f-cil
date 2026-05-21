@@ -34,11 +34,9 @@ async function importEd25519PrivateKey(b64: string): Promise<CryptoKey> {
   const raw = base64ToUint8Array(b64);
   // PKCS#8 starts with 0x30 (SEQUENCE)
   if (raw[0] === 0x30) {
-    return crypto.subtle.importKey("pkcs8", raw, { name: "Ed25519" }, false, ["sign"]);
+    return crypto.subtle.importKey("pkcs8", toAB(raw), { name: "Ed25519" }, false, ["sign"]);
   }
   if (raw.length === 32) {
-    // Wrap raw seed into a minimal PKCS#8 structure for Ed25519.
-    // Header: 302e020100300506032b657004220420 (16 bytes) + 32-byte seed
     const header = new Uint8Array([
       0x30, 0x2e, 0x02, 0x01, 0x00, 0x30, 0x05, 0x06, 0x03, 0x2b, 0x65, 0x70,
       0x04, 0x22, 0x04, 0x20,
@@ -46,7 +44,7 @@ async function importEd25519PrivateKey(b64: string): Promise<CryptoKey> {
     const pkcs8 = new Uint8Array(header.length + raw.length);
     pkcs8.set(header, 0);
     pkcs8.set(raw, header.length);
-    return crypto.subtle.importKey("pkcs8", pkcs8, { name: "Ed25519" }, false, ["sign"]);
+    return crypto.subtle.importKey("pkcs8", toAB(pkcs8), { name: "Ed25519" }, false, ["sign"]);
   }
   throw new Error(
     "KIWIFY_PRIVATE_KEY format not recognized. Provide a base64-encoded Ed25519 PKCS#8 key or a 32-byte raw seed.",

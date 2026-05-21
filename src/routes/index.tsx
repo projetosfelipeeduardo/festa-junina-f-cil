@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
 import {
   Check,
   Download,
@@ -142,7 +141,6 @@ const youReceive = [
 ];
 
 function Index() {
-  const [pay, setPay] = useState("pix");
   return (
     <main className="min-h-screen bg-paper text-foreground overflow-x-hidden">
       {/* HERO */}
@@ -386,42 +384,7 @@ function Index() {
         </div>
       </section>
 
-      {/* CHECKOUT */}
-      <section id="checkout" className="py-16">
-        <SectionTitle>Finalize Sua Compra</SectionTitle>
-        <div className="mx-auto max-w-4xl px-4">
-          <form
-            onSubmit={(e) => e.preventDefault()}
-            className="rounded-3xl bg-card border-2 border-border shadow-card-junina p-6 md:p-8 grid md:grid-cols-2 gap-6"
-          >
-            <div className="space-y-4">
-              <Field label="Nome completo" placeholder="Seu nome" type="text" />
-              <Field label="E-mail" placeholder="voce@email.com" type="email" />
-              <Field label="Confirmar e-mail" placeholder="voce@email.com" type="email" />
-              <Field label="CPF" placeholder="000.000.000-00" type="text" />
-              <p className="flex items-center gap-2 text-xs text-junina-wood"><Lock className="size-3" /> Seus dados estão seguros conosco.</p>
-            </div>
 
-            <div>
-              <div className="font-display uppercase text-junina-red mb-3">Forma de Pagamento</div>
-              <div className="space-y-3">
-                <PaymentOption checked={pay === "pix"} onChange={() => setPay("pix")} label="PIX (Aprovação imediata)" hint="Mais rápido" />
-                <PaymentOption checked={pay === "card"} onChange={() => setPay("card")} label="Cartão de Crédito" hint="Visa, Master, Elo, Hiper" />
-              </div>
-
-              <div className="mt-6 rounded-2xl border-2 border-dashed border-junina-wood/30 p-4 text-center">
-                <div className="text-xs text-junina-wood">Total</div>
-                <div className="font-display text-3xl text-junina-red">R$19,90</div>
-              </div>
-
-              <div className="mt-6 text-center">
-                <CtaButton>Quero decorar minha festa agora!</CtaButton>
-                <p className="text-xs text-junina-wood mt-3 flex items-center justify-center gap-2"><ShieldCheck className="size-4" /> Ambiente 100% seguro — arquivos liberados na hora</p>
-              </div>
-            </div>
-          </form>
-        </div>
-      </section>
 
       {/* FOOTER */}
       <footer className="bg-junina-wood-dark text-white/90 mt-8">
@@ -439,39 +402,3 @@ function Index() {
   );
 }
 
-function Field({ label, ...rest }: { label: string } & React.InputHTMLAttributes<HTMLInputElement>) {
-  return (
-    <label className="block">
-      <span className="block text-sm font-semibold text-junina-wood mb-1">{label}</span>
-      <input
-        {...rest}
-        className="w-full rounded-xl border-2 border-border bg-background px-4 py-3 text-junina-wood placeholder:text-junina-wood/50 focus:outline-none focus:border-junina-green transition-colors"
-      />
-    </label>
-  );
-}
-
-function PaymentOption({
-  checked,
-  onChange,
-  label,
-  hint,
-}: { checked: boolean; onChange: () => void; label: string; hint?: string }) {
-  return (
-    <button
-      type="button"
-      onClick={onChange}
-      className={`w-full flex items-center gap-3 rounded-xl border-2 px-4 py-3 text-left transition-colors ${
-        checked ? "border-junina-green bg-junina-green/10" : "border-border bg-background"
-      }`}
-    >
-      <span className={`size-5 rounded-full border-2 grid place-items-center ${checked ? "border-junina-green" : "border-junina-wood/40"}`}>
-        {checked && <span className="size-2.5 rounded-full bg-junina-green" />}
-      </span>
-      <span className="flex-1">
-        <span className="block font-semibold text-junina-wood">{label}</span>
-        {hint && <span className="block text-xs text-junina-wood/70">{hint}</span>}
-      </span>
-    </button>
-  );
-}

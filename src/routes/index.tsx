@@ -281,7 +281,7 @@ function Index() {
 
       {/* SECTION 5 - BENEFITS */}
       <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
-        <SectionTitle>Por Que Vale Muito Mais Que R$19,90?</SectionTitle>
+        <SectionTitle>Por Que Vale Muito Mais Que R$24,90?</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {benefits.map((b) => (
             <div key={b.title} className="rounded-2xl bg-card border-2 border-border shadow-card-junina p-5 text-center">

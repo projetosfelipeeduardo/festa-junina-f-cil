@@ -281,7 +281,7 @@ function Index() {
 
       {/* SECTION 5 - BENEFITS */}
       <section className="py-10 bg-junina-cream/60 border-y-4 border-dashed border-junina-wood/30">
-        <SectionTitle>Por Que Vale Muito Mais Que R$19,90?</SectionTitle>
+        <SectionTitle>Por Que Vale Muito Mais Que R$24,90?</SectionTitle>
         <div className="mx-auto max-w-6xl px-4 grid sm:grid-cols-2 lg:grid-cols-5 gap-5">
           {benefits.map((b) => (
             <div key={b.title} className="rounded-2xl bg-card border-2 border-border shadow-card-junina p-5 text-center">
@@ -331,7 +331,7 @@ function Index() {
             <div className="font-display uppercase text-junina-red text-xl mt-4">Oferta Especial</div>
             <div className="text-junina-wood line-through opacity-70 mt-2">De R$97,00</div>
             <div className="font-display uppercase text-junina-wood text-sm">Por Apenas</div>
-            <div className="font-display text-junina-red text-5xl md:text-6xl my-2">R$19,90</div>
+            <div className="font-display text-junina-red text-5xl md:text-6xl my-2">R$24,90</div>
             <div className="text-sm text-junina-wood font-semibold">Pagamento Único</div>
             <div className="mt-6">
               <a href="#checkout">
